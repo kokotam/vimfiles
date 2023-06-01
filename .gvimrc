@@ -1,5 +1,5 @@
 "Display
-colorscheme desert 
+"colorscheme desert 
 set background=dark
 syntax on "シンタックスカラーリングを設定する
 set number "行番号を表示する

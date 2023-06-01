@@ -13,7 +13,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-matchfuzzy'
 Plug 'mattn/vim-maketable'
 
-" 参考:https://mattn.kaoriya.net/software/vim/20191231213507.htm
+Plug 'previm/previm'
+Plug 'tyru/open-browser.vim'
+
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'

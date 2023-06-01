@@ -1,6 +1,8 @@
 " Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
 
+set runtimepath+=~/vimfiles,~/vimfiles/after
+
 """"""""""""""""""""""""""""""""""""""""""""
 " 各種オプションの設定
 """"""""""""""""""""""""""""""""""""""""""""
