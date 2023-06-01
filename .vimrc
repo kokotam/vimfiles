@@ -72,10 +72,19 @@ imap <C-a>  <Home>
 imap <C-e>  <End>
 imap <C-b>  <Left>
 imap <C-f>  <Right>
-imap <C-n>  <Down>
-imap <C-p>  <UP>
 
-"""""""""""""""""""""""""""""""""""""""""""""""
+" quickfix
+nnoremap <Leader>co :silent copen<CR>
+nnoremap <Leader>cc :silent cclose<CR>
+nnoremap <Leader>cn :silent cnext<CR>
+nnoremap <Leader>cp :silent cprevious<CR>
+
+    " 削除時にyankしない
+nnoremap x "_x
+nnoremap s "_s
+nnoremap c "_c
+
+""""""""""""""""""""""""""""""""""""""""""""""" 
 " ファイル処理関連の設定
 """""""""""""""""""""""""""""""""""""""""""""""
 set confirm    " 保存されていないファイルがあるときは終了前に保存確認
@@ -128,6 +137,15 @@ set smartcase " 大文字と小文字が混在した言葉で検索を行った�
 set hlsearch " 検索文字列をハイライトする
 set incsearch  " インクリメンタルサーチを行う
 
+
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+else
+  set grepprg=grep\ -rnIH\ --exclude-dir=.svn\ --exclude-dir=.git
+endif
+
+nnoremap <Leader>ss :silent grep! "\b\s?<C-R><C-W>\b"<CR>:cw<CR>:redr!<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""
 " 動作環境との統合関連の設定
 """""""""""""""""""""""""""""""""""""""""""""""
@@ -150,7 +168,7 @@ endif
 " タグファイルの場所
 set tags=./tags;,tags;
 " 候補が複数ある場合は一覧を出す
-:nnoremap <C-]> g<C-]>
+nnoremap <C-]> g<C-]>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""
