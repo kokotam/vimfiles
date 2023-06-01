@@ -22,6 +22,7 @@ syntax on
 
 "encodeはutf-8固定
 set encoding=utf-8
+
 " 改行コードはCR+LF
 set fileformat=dos
 
@@ -83,20 +84,20 @@ set hidden     " 保存されていないファイルがあるときでも別の
 " undo履歴の設定
 if has("persistent_undo")
 	set undofile                " 可能なら undo 履歴を永続的に保存する
-	set undodir=~/.vim/vim_undo     " undoファイルを.vim_undoににまとめる
+	set undodir=~/.vim_undo     " undoファイルを.vim_undoににまとめる
 	if !isdirectory(&undodir)       " ディレクトリがなかったら作成する
 		call mkdir(&undodir, "p")
 	endif
 endif
 
 " バックアップファイルの設定
-set backupdir=~/.vim/vim_backup     " ~xxxを.vim_backupにまとめる
+set backupdir=~/.vim_backup     " ~xxxを.vim_backupにまとめる
 if !isdirectory(&backupdir)     " ディレクトリがなかったら作成する
 	call mkdir(&backupdir, "p")
 endif
 
 " スワップファイルの設定
-set directory=~/.vim/vim_swapfile       " .xxx.swpを.vim_swapfileにまとめる
+set directory=~/.vim_swapfile       " .xxx.swpを.vim_swapfileにまとめる
 if !isdirectory(&directory)     " ディレクトリがなかったら作成する
 	call mkdir(&directory, "p")
 endif
