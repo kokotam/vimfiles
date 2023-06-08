@@ -28,8 +28,5 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 
-" アウトライン
-Plug 'preservim/tagbar'
-
 call plug#end()
 

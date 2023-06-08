@@ -9,10 +9,8 @@ set runtimepath+=~/vimfiles,~/vimfiles/after
 " Leaderの設定
 let mapleader = "\<Space>"
 
-let &t_ti.="\e[1 q"
-let &t_SI.="\e[5 q"
-let &t_EI.="\e[1 q"
-let &t_te.="\e[0 q"
+" veep音を止める
+set visualbell t_vb=
 
 """"""""""""""""""""""""""""""""""""""""""""
 " 表示関連
@@ -20,21 +18,27 @@ let &t_te.="\e[0 q"
 "シンタックスハイライトをONにする
 syntax on
 
-"encodeはutf-8固定
-set encoding=utf-8
+" colorschemeの変更
+colorscheme torte 
 
-" 改行コードはCR+LF
-set fileformat=dos
+" カーソルタイプの変更
+let &t_SI .= "\e[6 q"  " 挿入モード: 非点滅の縦棒タイプ
+let &t_EI .= "\e[2 q"  " ノーマルモード: 非点滅のブロックタイプ
+let &t_SR .= "\e[4 q"  " 置換モード: 非点滅の下線タイプ
+
+"encodeおよび改行コード
+set fileencodings=utf-8,iso-2022-jp,cp932,euc-jp,utf-16le,utf-16
+set fileformats=unix,dos,mac
 
 set number         " 行番号を表示する
 set cmdheight=1    " メッセージ表示欄を1行確保
 set showmatch      " 対応する括弧を強調表示
 set ruler          " カーソルの位置表示を行う
+set cursorline     " 行を強調表示
 
-" 行を強調表示
-set cursorline
 " Status lineに候補を表示する
 set wildmenu
+
 "不可視文字の表示
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
@@ -50,12 +54,6 @@ set statusline+=%= " これ以降は右寄せ表示
 set statusline+=[ENC=%{&fileencoding}] " file encoding
 set statusline+=[LOW=%l/%L] " 現在行数/全行数
 
-
-" colorschemeの変更
-colorscheme industry
-
-" veep音を止める
-set visualbell t_vb=
 
 """""""""""""""""""""""""""""""""""""""""""""""
 " キーバインド
@@ -79,7 +77,7 @@ nnoremap <Leader>cc :silent cclose<CR>
 nnoremap <Leader>cn :silent cnext<CR>
 nnoremap <Leader>cp :silent cprevious<CR>
 
-    " 削除時にyankしない
+" 削除時にyankしない
 nnoremap x "_x
 nnoremap s "_s
 nnoremap c "_c
@@ -170,10 +168,19 @@ set tags=./tags;,tags;
 " 候補が複数ある場合は一覧を出す
 nnoremap <C-]> g<C-]>
 
+"""""""""""""""""""""""""""""""""""""""""""""""
+" その他
+"""""""""""""""""""""""""""""""""""""""""""""""
+
+" TERMデバッガ
+packadd termdebug
+let g:termdebug_wide = 163 " 縦に分割
+
+" カレントディレクトリの自動移動
+set autochdir
 
 """""""""""""""""""""""""""""""""""""""""""""""
 " 各種設定の読み込み
 """""""""""""""""""""""""""""""""""""""""""""""
 call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
-
 
